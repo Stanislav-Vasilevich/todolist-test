@@ -1,55 +1,87 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Todolist from './component/Todolist/Todolist';
 import {v1} from 'uuid';
 
 export type TodoListType = {
-  title: string
-  task: TaskType[]
+    title: string
+    task: TaskType[]
 }
 
 type TaskType = {
-  id: string
-  title: string
-  check: boolean
+    id: string
+    title: string
+    check: boolean
 }
 
-const todoList: TodoListType = {
-  title: 'What to learn?',
-  task: [
-    {
-      id: v1(),
-      title: 'HTML&CSS',
-      check: false,
-    },
-    {
-      id: v1(),
-      title: 'JS',
-      check: false,
-    },
-    {
-      id: v1(),
-      title: 'React JS',
-      check: false,
-    },
-    {
-      id: v1(),
-      title: 'REST API',
-      check: false,
-    },
-  ]
-};
+// const todoList: TodoListType = {
+//   title: 'What to learn?',
+//   task: [
+//     {
+//       id: v1(),
+//       title: 'HTML&CSS',
+//       check: false,
+//     },
+//     {
+//       id: v1(),
+//       title: 'JS',
+//       check: false,
+//     },
+//     {
+//       id: v1(),
+//       title: 'React JS',
+//       check: false,
+//     },
+//     {
+//       id: v1(),
+//       title: 'REST API',
+//       check: false,
+//     },
+//   ]
+// };
 
 function App() {
-  return (
-    <div className="app">
-      <Todolist todolist={todoList}/>
-      <Todolist todolist={todoList}/>
-      <Todolist todolist={todoList}/>
-      <Todolist todolist={todoList}/>
-    </div>
-  );
+    const [todolist, setTodolist] = useState<TodoListType>({
+        title: 'What to learn?',
+        task: [
+            {
+                id: v1(),
+                title: 'HTML&CSS',
+                check: false,
+            },
+            {
+                id: v1(),
+                title: 'JS',
+                check: false,
+            },
+            {
+                id: v1(),
+                title: 'React JS',
+                check: false,
+            },
+            {
+                id: v1(),
+                title: 'REST API',
+                check: false,
+            },
+        ]
+    })
+
+    function removeTask(taskId: string) {
+        let task = todolist.task.filter(task => task.id !== taskId)
+
+        setTodolist({...todolist,task})
+    }
+
+
+    return (
+        <div className="app">
+            <Todolist todolist={todolist}
+                      removeTask={removeTask}
+            />
+        </div>
+    );
 }
 
 export default App;
