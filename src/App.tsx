@@ -6,7 +6,7 @@ import {v1} from 'uuid';
 
 export type TodoListType = {
     title: string
-    task: TaskType[]
+    tasks: TaskType[]
 }
 
 type TaskType = {
@@ -15,36 +15,11 @@ type TaskType = {
     check: boolean
 }
 
-// const todoList: TodoListType = {
-//   title: 'What to learn?',
-//   task: [
-//     {
-//       id: v1(),
-//       title: 'HTML&CSS',
-//       check: false,
-//     },
-//     {
-//       id: v1(),
-//       title: 'JS',
-//       check: false,
-//     },
-//     {
-//       id: v1(),
-//       title: 'React JS',
-//       check: false,
-//     },
-//     {
-//       id: v1(),
-//       title: 'REST API',
-//       check: false,
-//     },
-//   ]
-// };
 
 function App() {
     const [todolist, setTodolist] = useState<TodoListType>({
         title: 'What to learn?',
-        task: [
+        tasks: [
             {
                 id: v1(),
                 title: 'HTML&CSS',
@@ -69,9 +44,9 @@ function App() {
     })
 
     function removeTask(taskId: string) {
-        let task = todolist.task.filter(task => task.id !== taskId)
+        let newTasks = todolist.tasks.filter(task => task.id !== taskId)
 
-        setTodolist({...todolist,task})
+        setTodolist({...todolist,tasks:newTasks})
     }
 
 

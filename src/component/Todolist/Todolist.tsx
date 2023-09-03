@@ -22,7 +22,7 @@ const Todolist = (props: PropsType) => {
                 <button className="todolist__filter-button">Completed</button>
             </div>
             <ol>
-                {props.todolist.task.map((ts) => {
+                {props.todolist.tasks.map((ts) => {
                     return (
                         <li key={ts.id}>
                             <input type="checkbox"/>
