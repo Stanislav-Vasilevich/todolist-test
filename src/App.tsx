@@ -1,20 +1,19 @@
 import React, {useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Todolist from './component/Todolist/Todolist';
 import {v1} from 'uuid';
+
+
 
 export type TodoListType = {
     title: string
     tasks: TaskType[]
 }
-
 type TaskType = {
     id: string
     title: string
     check: boolean
 }
-
 
 function App() {
     const [todolist, setTodolist] = useState<TodoListType>({
@@ -23,7 +22,7 @@ function App() {
             {
                 id: v1(),
                 title: 'HTML&CSS',
-                check: false,
+                check: true,
             },
             {
                 id: v1(),
@@ -43,10 +42,14 @@ function App() {
         ]
     })
 
-    function removeTask(taskId: string) {
-        let newTasks = todolist.tasks.filter(task => task.id !== taskId)
 
-        setTodolist({...todolist,tasks:newTasks})
+
+
+
+    function removeTask(taskId: string) {
+        const newTasks = todolist.tasks.filter(task => task.id !== taskId)
+
+        setTodolist({...todolist, tasks: newTasks})
     }
 
 
@@ -54,6 +57,8 @@ function App() {
         <div className="app">
             <Todolist todolist={todolist}
                       removeTask={removeTask}
+
+
             />
         </div>
     );
