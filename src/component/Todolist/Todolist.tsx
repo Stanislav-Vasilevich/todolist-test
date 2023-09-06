@@ -1,6 +1,7 @@
 import React from 'react';
 import {FilterValueType, TaskType} from '../../App';
 import './Todolist.css';
+import s from './Todolist.module.css'
 
 type PropsType = {
   title: string
@@ -12,18 +13,18 @@ type PropsType = {
 
 const Todolist = (props: PropsType) => {
   return (
-    <div className="todolist">
-      <h2 className="todolist__title">{props.title}</h2>
-      <div className="todolist__form">
-        <input className="todolist__input" type="text"/>
-        <button className="todolist__add-button">+</button>
+    <div className={s.todolist}>
+      <h2 className={s.todolist__title}>{props.title}</h2>
+      <div className={s.todolist__form}>
+        <input className={s.todolist__input} type="text"/>
+        <button className={s.todolist__addButton}>+</button>
       </div>
       <div>
-        <button className="todolist__filter-button" onClick={() => props.setFilteredTasks('All')}>All</button>
-        <button className="todolist__filter-button" onClick={() => {
+        <button className={props.filter ==='All'? s.todolist__filterButton +' '+ s.todolist__filterButton_active: s.todolist__filterButton} onClick={() => props.setFilteredTasks('All')}>All</button>
+        <button className={s.todolist__filterButton} onClick={() => {
           props.setFilteredTasks('Active')
         }}>Active</button>
-        <button className="todolist__filter-button" onClick={() => {
+        <button className={s.todolist__filterButton} onClick={() => {
           props.setFilteredTasks('Completed')
         }}>Completed</button>
       </div>
