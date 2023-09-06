@@ -4,7 +4,6 @@ import Todolist from './component/Todolist/Todolist';
 import {v1} from 'uuid';
 
 
-
 export type TodoListType = {
     title: string
     tasks: TaskType[]
@@ -43,20 +42,21 @@ function App() {
     })
 
 
-
-
-
     function removeTask(taskId: string) {
         const newTasks = todolist.tasks.filter(task => task.id !== taskId)
 
         setTodolist({...todolist, tasks: newTasks})
     }
 
+    function setFilter(newTodolist: TodoListType) {
+        setTodolist(newTodolist)
+    }
 
     return (
         <div className="app">
             <Todolist todolist={todolist}
                       removeTask={removeTask}
+                      setFilter={setFilter}
 
 
             />
